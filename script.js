@@ -40,6 +40,8 @@ function disableCards() {
   secondCard.removeEventListener("click", flipCard);
   points++; // ger poäng för matchning
   console.log(points);
+  firstCard.style.visibility = "hidden";
+  secondCard.style.visibility = "hidden";
   if(points==6){
     alert("du vann");
   }
