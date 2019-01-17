@@ -11,7 +11,7 @@ body {
   opacity: 0.9;
 }
 
-.memory-game {
+#memory-game {
   width: 80%;
   height: 90%;
   display: flex;
@@ -56,4 +56,8 @@ body {
 
 .front-face {
   transform: rotateY(180deg);
+}
+
+img {
+  width: 100%;
 }
