@@ -1,59 +1,85 @@
-* {
-  padding: 0;
-  margin: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-  background: PaleGoldenrod	;
-  display: flex;
-  opacity: 0.9;
+.card:active {
+  transform: scale(1.3);
+  transition: transform .2s;
 }
 
-.memory-game {
+#memory-game {
   width: 80%;
   height: 90%;
   display: flex;
   flex-wrap: wrap;
   border: 2px solid PaleGoldenrod;
   margin: auto;
+  margin-top: 5rem;
   perspective: 1000px;
   background: DarkKhaki;
   padding: 5px;
   border-radius: 10px;
 }
-.memory-card {
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
-  position: relative;
-  margin: 5px;
-  transform: scale(1);
-  transform-style: preserve-3d;
-  transition: transform.5s;
-  border: 2px solid PaleGoldenrod;
-  border-radius: 10px;
+
+.grid {
+  max-width: 960px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.memory-card:active {
-  transform: scale(1.3);
-  transition: transform .2s;
+.card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    position: relative;
+    margin: 5px;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform.5s;
+    border: 2px solid PaleGoldenrod;
+    border-radius: 10px;
+  }
+
+.card, .back, .front {
+  height: 12rem;
+  width: 12rem;
 }
 
-.memory-card.flip {
-  transform: rotateY(180deg);
-  transform: .2s;
-  border: 5px solid DarkOliveGreen;
-}
-
-.front-face, .back-face {
+.back, .front {
   position: absolute;
+  backface-visibility: hidden;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
+}
+
+.front {
+  background: url(all.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   border-radius: 10px;
 }
 
-.front-face {
+
+
+.back {
   transform: rotateY(180deg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+
+.selected {
+  transform: rotateY(180deg);
+}
+.match .front {
+  background: inherit !important;
+}
+.match {
+
+  background-image: none !important;
 }
