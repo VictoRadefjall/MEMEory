@@ -1,73 +1,129 @@
-const cards = document.querySelectorAll(".memory-card");
+// Card data
+const cardsArray = [{
+    'name': 'shell',
+    'img': 'pics/css1.jpg',
+  },
+  {
+    'name': 'star',
+    'img': 'pics/css2.jpg',
+  },
+  {
+    'name': 'bobomb',
+    'img': 'pics/Evil_toddler.png',
+  },
+  {
+    'name': 'mario',
+    'img': 'pics/html1.jpg',
+  },
+  {
+    'name': 'luigi',
+    'img': 'pics/html2.jpg',
+  },
+  {
+    'name': 'peach',
+    'img': 'pics/js1.jpg',
+  },
+  {
+    'name': '1up',
+    'img': 'pics/js2.jpg',
+  },
+  {
+    'name': 'mushroom',
+    'img': 'pics/css1.jpg',
+  },
+  {
+    'name': 'thwomp',
+    'img': 'pics/css2.jpg',
+  },
+  {
+    'name': 'bulletbill',
+    'img': 'pics/html1.jpg',
+  },
+  {
+    'name': 'coin',
+    'img': 'pics/html2.jpg',
+  },
+  {
+    'name': 'goomba',
+    'img': 'pics/Evil_toddler.png',
+  },
+];
 
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
-let points = 0;
-let moves = 0;
+// Skapar ett nytt element i index för att ge en spelplan.
+  const game = document.getElementById('memory-game');
+  const grid = document.createElement('section');
+  grid.setAttribute('class', 'grid');
+  game.appendChild(grid);
 
+  let previousTarget = null;
+  let gameGrid = cardsArray.concat(cardsArray); //Dubblar antalet kort så att man har 2 av varje.
 
-function flipCard() {
-  if(lockBoard) return; //om kortet är låst, avbryt
-  if( this === firstCard) return; // om kortet vi klickar på är samma som första kortet, avbryt
+// Loppa igenom listan med kort som ska individualiseras.
+gameGrid.sort(() => 0.5 - Math.random());
 
-  this.classList.add("flip"); // lägger till klassnamn, gör så att css:en utförst
+gameGrid.forEach(item => {
+  const card = document.createElement('div');
+  card.classList.add('card'); //Lägger till en class till kortet.
+  card.dataset.name = item.name; // Lägger in meta-data attribut från arrayen.
 
-if(!hasFlippedCard){
-//first click
-  hasFlippedCard = true;
-  firstCard = this; // firstCard = första klicket
-  return;
-}
-// second click = secondcard
-  secondCard = this;
+  const front = document.createElement('div');
+  front.classList.add('front');
 
-  chechForMatch();
-}
+  const back = document.createElement('div');
+  back.classList.add('back');
+  card.style.backgroundImage = `url(${item.img})`;// Lägg till bild som bakgrund på spelkortet.
 
+  grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+});
 
-// matchar dom?
-function chechForMatch() { //matchar kortens data?
-  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-// om dom inte matchar vänder vi tillbaka korten och ökar moves med 1
-  isMatch ? disableCards() : unflipCards();
-  moves++;
-  console.log(moves);
-}
-
-function disableCards() {
-  firstCard.removeEventListener("click", flipCard);  // tarbort lyssnaren från kortet vid klick och triggar funktionen flipCard
-  secondCard.removeEventListener("click", flipCard);
-  points++; // ger poäng för matchning
-  console.log(points);
-  firstCard.style.visibility = "hidden";
-  secondCard.style.visibility = "hidden";
-  if(points==6){
-    alert("du vann");
+//Skapar en eventlistener för att upptäcka när det klickas
+grid.addEventListener('click', function (event) {
+  let clicked = event.target; //Event.target är det element man har klickat på.
+  if (clicked.nodeName === 'SECTION' || clicked === previousTarget) {
+     return;
+   }
+  if (count < 2) {
+    count ++;
+    if (count === 1) { //Ger första gissningen
+      firstGuess = clicked.parentNode.dataset.name;
+      clicked.parentNode.classList.add('selected');
+    } else { //andra gissningen
+      secondGuess = clicked.parentNode.dataset.name;
+      clicked.parentNode.classList.add('selected');
+    }
+    if (firstGuess !== '' && secondGuess !== '') { //OM gissningarna INTE är tomma..
+      if (firstGuess === secondGuess) { // och dom matchar..
+        setTimeout (match, delay); // så körs match funktionen.
+        setTimeout (resetGuesses, delay); // och Återställer gissningar
+      } else {
+        setTimeout (resetGuesses, delay);
+      }
+    }
+    previousTarget = clicked;
   }
+});
 
-  resetBoard();
-}
+const resetGuesses = () => { // Funktionen som återställer gissningarna.
+ firstGuess = '';
+ secondGuess = '';
+ count = 0;
 
-function unflipCards() { // tar bort klassen flip för att få bort css:en
-  lockBoard=true; // när detta görs låser vi hela spelet
-  setTimeout(() => { //sätter en fördröjning för syns skull
-  firstCard.classList.remove("flip"); // vänder tillbaka korten
-  secondCard.classList.remove("flip");
-
-  resetBoard (); // nollstället brädan
-}, 1500);
-}
-
-function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false]; // ställer om korten så att dom får lyssnare  igen
-  [firstCard, secondCard] = [null, null]; // tar bort värdet som vi tidigare gett dom (this)
-}
-
-(function shuffle(){ //parentesen gör att detta är det första som körs på sidan, behöver inte anropas
-  cards.forEach(card => {
-    let randomPosition = Math.floor(Math.random() * 12); // går igenom alla kort och ger dom ett slumpat nummer
-    card.style.order = randomPosition;
+  var selected = document.querySelectorAll('.selected');
+  selected.forEach(card => {
+    card.classList.remove('selected');
   });
-})();
-cards.forEach(card => card.addEventListener("click", flipCard)); // lägger till en lyssnare på alla kort
+};
+
+let delay = 1200; // En timer ger 1.2 sekunder att se valen man har gjort
+let firstGuess = '';
+let secondGuess = '';
+let count = 0;
+
+const match = () => { // Funktion som kontrollerar om de valda spelkorten är en matchning.
+  var selected = document.querySelectorAll('.selected');
+  selected.forEach(card => {
+    card.classList.add('match')
+  });
+}
