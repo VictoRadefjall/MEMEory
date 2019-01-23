@@ -5,18 +5,31 @@
   <meta charset="urf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <title>Memory Game</title>
-
+  <title>MEMEORY</title>
   <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
-
 <body>
 
-  <div id="memory-game"></div>
+  <div id="memory-game">
+    <header id="game-info">
+      <h1>The classic game with a Meme theme!</h1>
+    </header>
+    <section class="score-panel">
+  <ul class="stars">
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+  </ul>
 
-  <script src="script.js"></script>
+  <span class="moves">0 Move(s)</span> 
+
+    <div class="timer">
+    </div>
+</section>
+  </div>
+
+  <script src="script.js">gameGrid()</script>
 </body>
 
 </html>

@@ -1,53 +1,33 @@
 // Card data
 const cardsArray = [{
-    'name': 'shell',
-    'img': 'pics/css1.jpg',
+    'name': 'Late',
+    'img': 'pics/late.jpg',
   },
   {
-    'name': 'star',
-    'img': 'pics/css2.jpg',
+    'name': 'age',
+    'img': 'pics/age.jpg',
   },
   {
-    'name': 'bobomb',
-    'img': 'pics/Evil_toddler.png',
+    'name': 'beer',
+    'img': 'pics/beer.jpg',
   },
   {
-    'name': 'mario',
-    'img': 'pics/html1.jpg',
+    'name': 'smile',
+    'img': 'pics/smile.jpg',
   },
   {
-    'name': 'luigi',
-    'img': 'pics/html2.jpg',
+    'name': 'yeah',
+    'img': 'pics/yeah.jpg',
   },
   {
-    'name': 'peach',
-    'img': 'pics/js1.jpg',
-  },
-  {
-    'name': '1up',
-    'img': 'pics/js2.jpg',
-  },
-  {
-    'name': 'mushroom',
-    'img': 'pics/css1.jpg',
-  },
-  {
-    'name': 'thwomp',
-    'img': 'pics/css2.jpg',
-  },
-  {
-    'name': 'bulletbill',
-    'img': 'pics/html1.jpg',
-  },
-  {
-    'name': 'coin',
-    'img': 'pics/html2.jpg',
-  },
-  {
-    'name': 'goomba',
+    'name': 'evil',
     'img': 'pics/Evil_toddler.png',
   },
 ];
+//Skapar en div för spelinformation
+  const gameinfo = document.getElementById('game-info');
+  const container = document.createElement('div');
+  gameinfo.appendChild(container);
 
 // Skapar ett nytt element i index för att ge en spelplan.
   const game = document.getElementById('memory-game');
@@ -58,7 +38,14 @@ const cardsArray = [{
   let previousTarget = null;
   let gameGrid = cardsArray.concat(cardsArray); //Dubblar antalet kort så att man har 2 av varje.
 
-// Loppa igenom listan med kort som ska individualiseras.
+  //importerad kod för timer och stjärnor
+  const stars = document.querySelectorAll(".fa-star");
+  // stars list
+  let starsList = document.querySelectorAll(".stars li");
+  let moves = 0;
+  let counter = document.querySelector(".moves");
+
+// Loopa igenom listan med kort som ska individualiseras.
 gameGrid.sort(() => 0.5 - Math.random());
 
 gameGrid.forEach(item => {
@@ -104,7 +91,6 @@ grid.addEventListener('click', function (event) {
     previousTarget = clicked;
   }
 });
-
 const resetGuesses = () => { // Funktionen som återställer gissningarna.
  firstGuess = '';
  secondGuess = '';
@@ -125,5 +111,52 @@ const match = () => { // Funktion som kontrollerar om de valda spelkorten är en
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.add('match')
+    card.classList.remove('front','back', 'card', 'selected', 'match')
   });
+}
+
+//game timer
+var second = 0, minute = 0;
+var timer = document.querySelector(".timer");
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+"mins "+second+"secs";
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
+function moveCounter(){
+    moves++;
+    counter.innerHTML = moves;
+    //start timer on first click
+    if(moves == 1){
+        second = 0;
+        minute = 0;
+        hour = 0;
+        startTimer();
+    }
+    // setting rates based on moves
+    if (moves > 8 && moves < 12){
+        for( i= 0; i < 3; i++){
+            if(i > 1){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+    else if (moves > 13){
+        for( i= 0; i < 3; i++){
+            if(i > 0){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
 }
