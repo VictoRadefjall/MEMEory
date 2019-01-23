@@ -27,25 +27,29 @@ const allCards = [{
 const doubleCards = allCards.concat(allCards);
 doubleCards.sort(() => 0.5 - Math.random());
 
+
 let firstCard = '';
 let secondCard = '';
 let count = 0;
 let previousEvent = null;
 let delay = 1200;
 let matched = '';
+let tries = '';
+let yourScore = 30;
 //hämtar diven memorygame & skapar sectioner
 const game = document.getElementById('memory-game');
-const grid = document.createElement('section');
+const board = document.createElement('section');
 
-grid.setAttribute('class', 'grid');
-game.appendChild(grid);
 
+board.setAttribute('class', 'board');
+game.appendChild(board);
 
 
 doubleCards.forEach(item => {
   const card = document.createElement('div');
   card.classList.add('card');
   card.dataset.parId = item.parId;
+
    //framsidan
    const front = document.createElement('div');
    front.classList.add('front');
@@ -53,9 +57,9 @@ doubleCards.forEach(item => {
    //baksidan
    const back = document.createElement('div');
    back.classList.add('back');
-  back.style.backgroundImage = `url(${item.img})`;
+   back.style.backgroundImage = `url(${item.img})`;
 
-  grid.appendChild(card);
+  board.appendChild(card);
   card.appendChild(front);
   card.appendChild(back);
 });
@@ -65,7 +69,6 @@ const match = () => {
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.add('match');
-
   });
 };
 
@@ -74,6 +77,22 @@ const reset = () => {
   secondCard = '';
   count = 0;
   previousEvent = null;
+  tries++;
+  if (tries % 6 == 0) {
+    var star = document.getElementById('star');
+    star.parentNode.removeChild(star);
+    yourScore = yourScore-10;
+  }
+    if ( tries > 18){
+      alert("you loose");
+    }
+
+  document.getElementById('tries').innerHTML = tries;
+  let theCards = document.getElementsByClassName('card match');
+  console.log(theCards.length);
+  if(theCards.length >= 12) {
+    document.getElementById('winner').innerHTML = "You won! Your score: " + yourScore + "points";
+  }
 
 
   var selected = document.querySelectorAll('.selected');
@@ -82,8 +101,8 @@ const reset = () => {
   });
 };
 
-// lägger till lyssnare på hela griden
-grid.addEventListener('click', function(event) {
+// lägger till lyssnare på hela boarden
+board.addEventListener('click', function(event) {
 
   const clicked = event.target;
 
@@ -99,12 +118,12 @@ grid.addEventListener('click', function(event) {
     if (count === 1) {
       // Assign first guess
       firstCard = clicked.parentNode.dataset.parId;
-      console.log(firstCard);
+      //console.log(firstCard);
       clicked.parentNode.classList.add('selected');
     } else {
       // Assign second guess
       secondCard = clicked.parentNode.dataset.parId;
-      console.log(secondCard);
+    //  console.log(secondCard);
       clicked.parentNode.classList.add('selected');
     }
     // If both guesses are not empty...
@@ -115,16 +134,14 @@ grid.addEventListener('click', function(event) {
         setTimeout(match,delay);
         setTimeout(reset,delay);
         matched++;
-        console.log(matched)
+        document.getElementById('matched').innerHTML = matched;
+
       } else {
         setTimeout(reset, delay);
       }
 
     }
     previousEvent = clicked;
+
   }
 });
-
-
-
-// bara 2 kort
