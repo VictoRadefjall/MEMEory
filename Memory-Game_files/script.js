@@ -94,7 +94,7 @@ const reset = () => {
     document.getElementById('winner').innerHTML = "You won! Your score: " + yourScore + "points";
   }
 
- // Ger spelkorten vid
+
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.remove('selected');

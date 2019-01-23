@@ -7,27 +7,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>MEMEORY</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 </head>
 <body>
+  <h1>Memeory</h1>
 
-  <div id="memory-game">
-    <header id="game-info">
-      <h1>The classic game with a Meme theme!</h1>
-    </header>
-    <section class="score-panel">
-  <ul class="stars">
-    <li><i class="fa fa-star"></i></li>
-    <li><i class="fa fa-star"></i></li>
-    <li><i class="fa fa-star"></i></li>
-  </ul>
+  <div id="points">
+    <img id="star" src="star.png">
+    <img id="star" src="star.png">
+    <img id="star" src="star.png">
 
-  <span class="moves">0 Move(s)</span> 
+    <span id="tries">-</span>
+  <span>Tries: </span>
 
-    <div class="timer">
-    </div>
-</section>
+
+  <span id="matched"> -</span>
+  <span> Score: </span>
   </div>
+  <div id="memory-game">
+  <h2 id="winner"></h2>
+</div>
 
   <script src="script.js">gameGrid()</script>
 </body>

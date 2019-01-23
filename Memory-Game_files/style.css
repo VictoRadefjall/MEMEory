@@ -15,7 +15,8 @@ h1 {
   text-shadow: 0 0 8px black, 0 0 10px black;
 }
 h2 {
-font-size: 3rem;
+font-size: 4rem;
+text-align: center;
 font-family: impact;
 color: #FFEAA2;
 }
@@ -82,14 +83,9 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 10px;
-  border: 5px solid #FCD639;
+  border: 5 px solid #FCD639;
 
 }
-.front {
-  background-image: url(Pics/chess.jpg);
-  /* background-color: #3B3052; */
-  background-repeat: repeat-x;
-  background-size: cover;
 
 .selected {
   transform: rotateY(180deg);
@@ -103,7 +99,7 @@ body {
 #points img {
   width: 10%;
   height: 60%;
-  margin-top: 145px;
+  margin-top: 150px;
 }
 #points {
   width: 40%;
@@ -114,11 +110,11 @@ body {
 }
 
 span{
-  padding-left: 20px;
+  padding-left: 10px;
   float: left;
   font-family: tahoma;
   font-size: 30px;
   font-weight: bold;
-  float: right;
-    margin-top: 150px;
+  
+  margin-top: 150px;
 }
