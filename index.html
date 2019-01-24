@@ -7,8 +7,13 @@
   <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 </head>
 <body>
-  <h1>Memeory</h1>
+
   <div id="points">
+  <h1>Memeory</h1>
+
+    <img id="star" src="star.png">
+   <img id="star" src="star.png">
+   <img id="star" src="star.png">
 
     <span id="tries">-</span>
     <span>Tries: </span>
@@ -16,25 +21,20 @@
   <span id="matched"> -</span>
   <span> Matches: </span>
   </div>
-  <div id="memory-game">
-  <h2 id="result"></h2>
-  <button type="submit" onClick="refreshPage()">Try Again</button>
+
+  <div id="memory-game"></div>
+
 
 <div id="popup1" class="overlay">
     <div class="popup">
-        <h2>Congratulations 🎉</h2>
+        <h2 id="result"></h2>
         <a class="close" href=# >×</a>
-        <div class="content-1">
-            Congratulations you're a winner 🎉🎉
-        </div>
-        <div class="content-2">
-            <p><span id=winner></span></p>
-        </div>
         <button type="submit" onclick='refreshPage()'>
             Play again 😄</a>
         </button>
     </div>
 </div>
+
 
 
 
