@@ -35,7 +35,8 @@ let previousEvent = null;
 let delay = 1200;
 let matched = '';
 let tries = '';
-let yourScore = 30;
+let yourScore = 24;
+let matchedCards = document.getElementsByClassName('card match');
 //hämtar diven memorygame & skapar sectioner
 const game = document.getElementById('memory-game');
 const board = document.createElement('section');
@@ -64,6 +65,10 @@ doubleCards.forEach(item => {
   card.appendChild(back);
 });
 
+function refreshPage(){
+    window.location.reload();
+}
+
 // funktion för matchade element för att matcha css
 const match = () => {
   var selected = document.querySelectorAll('.selected');
@@ -81,23 +86,23 @@ const reset = () => {
   if (tries % 6 == 0) {
     var star = document.getElementById('star');
     star.parentNode.removeChild(star);
-    yourScore = yourScore-10;
   }
-    if ( tries > 18){
-      alert("you loose");
-    }
+    if ( tries > 17 && matchedCards.length < 12){
+      document.getElementById("result").innerHTML = "You lost";
+          }
 
   document.getElementById('tries').innerHTML = tries;
-  let theCards = document.getElementsByClassName('card match');
-  console.log(theCards.length);
-  if(theCards.length >= 12) {
-    document.getElementById('winner').innerHTML = "You won! Your score: " + yourScore + "points";
+
+  console.log(matchedCards.length);
+  if(matchedCards.length >= 12) {
+    document.getElementById('result').innerHTML = "You won! Your score: " + yourScore + "points";
   }
 
 
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.remove('selected');
+
   });
 };
 
@@ -125,6 +130,7 @@ board.addEventListener('click', function(event) {
       secondCard = clicked.parentNode.dataset.parId;
     //  console.log(secondCard);
       clicked.parentNode.classList.add('selected');
+      yourScore = yourScore-1;
     }
     // If both guesses are not empty...
     if (firstCard && secondCard) {
@@ -144,4 +150,7 @@ board.addEventListener('click', function(event) {
     previousEvent = clicked;
 
   }
+
+
+
 });

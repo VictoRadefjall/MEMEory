@@ -57,8 +57,8 @@ body {
   }
 
 .card, .back, .front {
-  height: 10rem;
-  width:  12rem;
+  height: 11rem;
+  width:  13rem;
 }
 
 .back, .front {
@@ -74,6 +74,7 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 10px;
+  background-size: 100%;
 }
 
 .back {
@@ -83,7 +84,7 @@ body {
   background-position: center center;
   border-radius: 10px;
   border: 5 px solid #FCD639;
-
+  background-size: 100%;
 }
 
 .selected {
@@ -115,5 +116,22 @@ span{
   font-size: 30px;
   font-weight: bold;
   float: right;
-    margin-top: 150px;
+  margin-top: 150px;
+}
+
+button {
+  visibility: hidden;
+  width: 150px;
+  height: 70px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: impact;
+  background-color: #3E849F;
+  color: #FFEAA2;
+  visibility: hidden;
+
+}
+
+.refresh {
+  visibility: visible;
 }
