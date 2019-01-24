@@ -4,48 +4,70 @@
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: 8rem;
+  text-align: center;
+  margin: 20px;
+  font-family: impact;
+  color: #DBE6E8;
+  float: left;
+  clear: none;
+  text-shadow: 0 0 8px black, 0 0 10px black;
+}
+h2 {
+font-size: 3rem;
+font-family: impact;
+color: #FFEAA2;
+}
+
 .card:active {
   transform: scale(1.3);
   transition: transform .2s;
 }
 
 #memory-game {
-  width: 80%;
-  height: 90%;
+  width: 1000px;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid PaleGoldenrod;
   margin: auto;
-  margin-top: 5rem;
   perspective: 1000px;
-  background: DarkKhaki;
-  padding: 5px;
+  background:  #B9C7CA;
+  padding: 10px;
   border-radius: 10px;
 }
 
+<<<<<<< HEAD
 .grid {
+=======
+.board {
+>>>>>>> ff5c136a9af999f73bc7301ae043487a766aed16
   max-width: 960px;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+body {
+  background: #3E849F;
+}
 
 .card {
-    width: calc(25% - 10px);
-    height: calc(33.333% - 10px);
     position: relative;
     margin: 5px;
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform.5s;
-    border: 2px solid PaleGoldenrod;
     border-radius: 10px;
   }
 
 .card, .back, .front {
+<<<<<<< HEAD
   height: 12rem;
   width: 12rem;
+=======
+  height: 11rem;
+  width:  13rem;
+>>>>>>> ff5c136a9af999f73bc7301ae043487a766aed16
 }
 
 .back, .front {
@@ -61,16 +83,17 @@
   background-repeat: no-repeat;
   background-position: center center;
   border-radius: 10px;
+  background-size: 100%;
 }
-
-
 
 .back {
   transform: rotateY(180deg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-
+  border-radius: 10px;
+  border: 5 px solid #FCD639;
+  background-size: 100%;
 }
 
 .selected {
@@ -80,6 +103,161 @@
   background: inherit !important;
 }
 .match {
-
   background-image: none !important;
+}
+#points img {
+  width: 10%;
+  height: 10%;
+  margin-top: 145px;
+}
+#points {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  color: #FFEAA2;
+  display: flex;
+  align-content: flex-start;
+}
+
+span{
+  padding-left: 20px;
+  float: left;
+  font-family: tahoma;
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+  margin-top: 150px;
+}
+
+button {
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: impact;
+  background-color: #3E849F;
+  color: #FFEAA2;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #ffffff;
+	border-radius: 5px;
+	width: 85%;
+	position: relative;
+	transition: all 5s ease-in-out;
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #E5F720;
+}
+
+.popup .content-1,
+.content-2 {
+	max-height: 30%;
+	overflow: auto;
+	text-align: center;
+}
+
+.show {
+	visibility: visible !important;
+	opacity:  100 !important;
+}
+
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #ffffff;
+	border-radius: 5px;
+	width: 85%;
+	position: relative;
+	transition: all 5s ease-in-out;
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #E5F720;
+}
+
+.popup .content-1,
+.content-2 {
+	max-height: 30%;
+	overflow: auto;
+	text-align: center;
+}
+
+.show {
+	visibility: visible !important;
+	opacity:  100 !important;
 }
