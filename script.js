@@ -1,26 +1,26 @@
 const allCards = [{
   'parId': '1',
-  'img': 'html1.jpg',
+  'img': 'Pics/html1.jpg',
 },
 {
   'parId': '2',
-  'img': 'html2.jpg',
+  'img': 'Pics/html2.jpg',
 },
 {
   'parId': '3',
-  'img': 'css1.jpg',
+  'img': 'Pics/css1.jpg',
 },
 {
   'parId': '4',
-  'img': 'css2.jpg',
+  'img': 'Pics/css2.jpg',
 },
 {
   'parId': '5',
-  'img': 'js1.jpg',
+  'img': 'Pics/js1.jpg',
 },
 {
   'parId': '6',
-  'img': 'js2.jpg',
+  'img': 'Pics/js2.jpg',
 }];
 
 //duplicerar korten
@@ -88,7 +88,7 @@ const reset = () => {
     var star = document.getElementById('star');
     star.parentNode.removeChild(star);
   }
-    if ( tries > 5 ){
+    if ( tries > 17 ){
       document.getElementById('result').innerHTML = "You lost! Your score: " + yourScore + "points";
       var modal = document.getElementById('popup1');
   modal.classList.add("show");
@@ -98,7 +98,7 @@ const reset = () => {
   document.getElementById('tries').innerHTML = tries;
 
   console.log(matchedCards.length);
-  if(matchedCards.length >= 1) {
+  if(matchedCards.length >= 12) {
     document.getElementById('result').innerHTML = "Congratulations you won! 🎉 Your score: " + yourScore + "points";
     var modal = document.getElementById('popup1');
     modal.classList.add("show");

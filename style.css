@@ -5,14 +5,14 @@
 }
 
 h1 {
-  font-size: 8rem;
+  font-size: 7rem;
   text-align: center;
-  margin: 20px;
+  margin: 10px;
   font-family: impact;
   color: #DBE6E8;
   float: left;
-  clear: none;
   text-shadow: 0 0 8px black, 0 0 10px black;
+  width: 100%;
 }
 h2 {
 font-size: 3rem;
@@ -35,6 +35,7 @@ color: #FFEAA2;
   background:  #B9C7CA;
   padding: 10px;
   border-radius: 10px;
+  clear: both;
 }
 
 .board {
@@ -69,7 +70,7 @@ body {
 }
 
 .front {
-  background: url(all.jpg);
+  background: url(Pics/all.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -96,28 +97,32 @@ body {
 .match {
   background-image: none !important;
 }
-#points img {
-  width: 10%;
-  height: 10%;
-  margin-top: 145px;
+#stars img {
+  width: 80px;
+  height: 80px;
+  float: right;
 }
+#stars {
+  float: left;
+  width: 35%;
+}
+
 #points {
-  width: 100%;
+  width: 40%;
   height: auto;
   border-radius: 10px;
   color: #FFEAA2;
-  display: flex;
-  align-content: flex-start;
+  float: right;
+
+
 }
 
 span{
-  padding-left: 20px;
-  float: left;
+  padding: 10px;
   font-family: tahoma;
   font-size: 30px;
   font-weight: bold;
-  float: right;
-  margin-top: 150px;
+  float: left;
 }
 
 button {
