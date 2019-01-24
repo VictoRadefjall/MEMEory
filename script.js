@@ -36,6 +36,8 @@ let delay = 1200;
 let matched = '';
 let tries = '';
 let yourScore = 30;
+let closeicon = document.querySelector(".close");
+
 //hämtar diven memorygame & skapar sectioner
 const game = document.getElementById('memory-game');
 const board = document.createElement('section');
@@ -64,6 +66,10 @@ doubleCards.forEach(item => {
   card.appendChild(back);
 });
 
+function refreshPage() {
+  window.location.reload();
+}
+
 // funktion för matchade element för att matcha css
 const match = () => {
   var selected = document.querySelectorAll('.selected');
@@ -90,11 +96,20 @@ const reset = () => {
   document.getElementById('tries').innerHTML = tries;
   let theCards = document.getElementsByClassName('card match');
   console.log(theCards.length);
-  if(theCards.length >= 12) {
+  if(theCards.length >= 1) {
+    // show congratulations modal
     document.getElementById('winner').innerHTML = "You won! Your score: " + yourScore + "points";
+    var modal = document.getElementById('popup1');
+    modal.classList.add("show");
+    closeModal();
+  }
+  //close icon on modal
+  function closeModal(){
+      closeicon.addEventListener("click", function(e){
+          modal.classList.remove("show");
+      });
   }
 
- // Ger spelkorten vid
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.remove('selected');
