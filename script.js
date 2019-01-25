@@ -34,8 +34,8 @@ let count = 0;
 let previousEvent = null;
 let delay = 1200;
 let matched = '';
-let tries = '';
-let yourScore = 24;
+let tries = 18;
+let yourScore = 18;
 let matchedCards = document.getElementsByClassName('card match');
 let closeicon = document.querySelector(".close");
 //hämtar diven memorygame & skapar sectioner
@@ -83,13 +83,14 @@ const reset = () => {
   secondCard = '';
   count = 0;
   previousEvent = null;
-  tries++;
+  tries--;
+  yourScore--;
   if (tries % 6 == 0) {
     var star = document.getElementById('star');
     star.parentNode.removeChild(star);
   }
-    if ( tries > 17 ){
-      document.getElementById('result').innerHTML = "You lost! Your score: " + yourScore + "points";
+    if ( tries < 1 ){
+      document.getElementById('result').innerHTML = "You lost!";
       var modal = document.getElementById('popup1');
   modal.classList.add("show");
   closeModal();
@@ -144,7 +145,7 @@ board.addEventListener('click', function(event) {
       secondCard = clicked.parentNode.dataset.parId;
     //  console.log(secondCard);
       clicked.parentNode.classList.add('selected');
-      yourScore = yourScore-1;
+
     }
     // If both guesses are not empty...
     if (firstCard && secondCard) {

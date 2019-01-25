@@ -10,8 +10,7 @@ h1 {
   margin: 10px;
   font-family: impact;
   color: #DBE6E8;
-  float: left;
-  text-shadow: 0 0 8px black, 0 0 10px black;
+  text-shadow: 0 0 20px black, 0 0 20px black;
   width: 100%;
 }
 h2 {
@@ -166,7 +165,7 @@ button {
 .popup h2 {
 	margin-top: 0;
 	color: #333;
-	font-family: Tahoma, Arial, sans-serif;
+	font-family: Impact;
 }
 
 .popup .close {
