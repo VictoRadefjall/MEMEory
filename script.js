@@ -36,7 +36,7 @@ let delay = 1200;
 let matched = '';
 let tries = 18;
 let yourScore = 18;
-let matchedCards = document.getElementsByClassName('card match');
+let matchedCards = document.getElementsByClassName('card match'); //array som samlar alla matchade kort
 let closeicon = document.querySelector(".close");
 //hämtar diven memorygame & skapar sectioner
 const game = document.getElementById('memory-game');
@@ -47,7 +47,7 @@ board.setAttribute('class', 'board');
 game.appendChild(board);
 
 
-doubleCards.forEach(item => {
+doubleCards.forEach(item => { //för varje item i dc = card med div, matchar med par id
   const card = document.createElement('div');
   card.classList.add('card');
   card.dataset.parId = item.parId;
@@ -66,7 +66,7 @@ doubleCards.forEach(item => {
   card.appendChild(back);
 });
 
-function refreshPage(){
+function refreshPage(){ // resetar sidan
     window.location.reload();
 }
 
@@ -78,28 +78,27 @@ const match = () => {
   });
 };
 
-const reset = () => {
+const reset = () => { // nollställer det man tidigare klickat på och minskar tries och points
   firstCard = '';
   secondCard = '';
   count = 0;
-  previousEvent = null;
+  previousEvent = null; //tidigare klick = o
   tries--;
   yourScore--;
-  if (tries % 6 == 0) {
+  if (tries % 6 == 0) { // var 6:e gång plockas en stjärna bort
     var star = document.getElementById('star');
     star.parentNode.removeChild(star);
   }
-    if ( tries < 1 ){
+    if ( tries < 1 ){ // om försöken tar slut
       document.getElementById('result').innerHTML = "You lost!";
       var modal = document.getElementById('popup1');
   modal.classList.add("show");
   closeModal();
           }
 
-  document.getElementById('tries').innerHTML = tries;
+  document.getElementById('tries').innerHTML = tries; // skriver ut tries
 
-  console.log(matchedCards.length);
-  if(matchedCards.length >= 12) {
+  if(matchedCards.length >= 12) { // läser av om man vinner, arrayens längd med matchning
     document.getElementById('result').innerHTML = "Congratulations you won! 🎉 Your score: " + yourScore + "points";
     var modal = document.getElementById('popup1');
     modal.classList.add("show");
@@ -117,7 +116,6 @@ const reset = () => {
   var selected = document.querySelectorAll('.selected');
   selected.forEach(card => {
     card.classList.remove('selected');
-
   });
 };
 
@@ -125,7 +123,7 @@ const reset = () => {
 board.addEventListener('click', function(event) {
 
   const clicked = event.target;
-
+  // om et innehåller selected eller match eller match - avsluta så vi inte kan klicka på dom igen
   if (clicked.nodeName === 'SECTION' ||
       clicked === previousEvent||
       clicked.parentNode.classList.contains('selected')||
@@ -139,7 +137,7 @@ board.addEventListener('click', function(event) {
       // Assign first guess
       firstCard = clicked.parentNode.dataset.parId;
       //console.log(firstCard);
-      clicked.parentNode.classList.add('selected');
+      clicked.parentNode.classList.add('selected'); // lägger till selected
     } else {
       // Assign second guess
       secondCard = clicked.parentNode.dataset.parId;
@@ -147,18 +145,18 @@ board.addEventListener('click', function(event) {
       clicked.parentNode.classList.add('selected');
 
     }
-    // If both guesses are not empty...
+
     if (firstCard && secondCard) {
-      // and the first guess matches the second match...
+      // och första kortet är samma som andra (matchar)
       if (firstCard === secondCard) {
         // run the match function
-        setTimeout(match,delay);
-        setTimeout(reset,delay);
+        setTimeout(match,delay); //matchar
+        setTimeout(reset,delay); // tillbakaställer
         matched++;
-        document.getElementById('matched').innerHTML = matched;
+        document.getElementById('matched').innerHTML = matched; // skriver antal matchningar
 
       } else {
-        setTimeout(reset, delay);
+        setTimeout(reset, delay); // resetar
       }
 
     }
